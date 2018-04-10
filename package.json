@@ -1,6 +1,6 @@
 {
-  "name": "bitcoind-rpc-dash",
-  "description": "Dash Client Library to connect to Dash Core via RPC",
+  "name": "bitcoind-rpc-colx",
+  "description": "Colx Client Library to connect to COLX via RPC",
   "version": "1.0.1",
   "author": {
     "name": "Stephen Pair",
@@ -29,12 +29,12 @@
     }
   ],
   "keywords": [
-    "dash",
+    "colx",
     "rpc"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dashevo/bitcoind-rpc-dash"
+    "url": "https://github.com/deltaengine/bitcoind-rpc-colx"
   },
   "license": "MIT",
   "main": "lib/index.js",
@@ -54,7 +54,7 @@
     "sinon": "^1.12.2"
   },
   "bugs": {
-    "url": "https://github.com/dashevo/bitcoind-rpc-dash/issues"
+    "url": "https://github.com/deltaengine/bitcoind-rpc-colx/issues"
   },
-  "homepage": "https://github.com/dashevo/bitcoind-rpc-dash"
+  "homepage": "https://github.com/deltaengine/bitcoind-rpc-colx"
 }
