@@ -19,7 +19,7 @@ Config parameters :
 	- user : (string - optional) - (default: 'user') - Set the user credential.
 	- pass : (string - optional) - (default: 'pass') - Set the password credential.
 	- host : (string - optional) - (default: '127.0.0.1') - The host you want to connect with.
-	- port : (integer - optional) - (default: 51473) - Set the port on which perform the RPC command.
+	- port : (integer - optional) - (default: 51573) - Set the port on which perform the RPC command.
 
 Promise vs callback based
 
@@ -35,7 +35,7 @@ var config = {
     user: 'colx',
     pass: 'local321',
     host: '127.0.0.1',
-    port: 51473
+    port: 51573
 };
 ```
 
