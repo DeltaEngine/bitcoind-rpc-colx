@@ -1,45 +1,69 @@
-bitcoind-rpc-dash.js
+bitcoind-rpc-colx.js
 ===============
 
-[![NPM Package](https://img.shields.io/npm/v/bitcoind-rpc-dash.svg?style=flat-square)](https://www.npmjs.org/package/bitcoind-rpc-dash)
-[![Build Status](https://img.shields.io/travis/dashpay/bitcoind-rpc-dash.svg?branch=master&style=flat-square)](https://travis-ci.org/dashpay/bitcoind-rpc-dash)
-[![Coverage Status](https://img.shields.io/coveralls/dashpay/bitcoind-rpc-dash.svg?style=flat-square)](https://coveralls.io/r/dashpay/bitcoind-rpc-dash?branch=master)
-
-A client library to connect to Dash Core RPC in JavaScript.
+A client library to connect to ColossusXT (COLX) RPC in JavaScript.
 
 ## Get Started
 
-bitcoind-rpc-dash.js runs on [node](http://nodejs.org/), and can be installed via [npm](https://npmjs.org/):
+bitcoind-rpc-colx.js runs on [node](http://nodejs.org/), and can be installed via [npm](https://npmjs.org/):
 
 ```bash
-npm install bitcoind-rpc-dash
+npm install bitcoind-rpc-colx
 ```
 
 ## RpcClient
 
-Arguments : 
+Config parameters : 
 
 	- protocol : (string - optional) - (default: 'https') - Set the protocol to be used. Either `http` or `https`.
 	- user : (string - optional) - (default: 'user') - Set the user credential.
 	- pass : (string - optional) - (default: 'pass') - Set the password credential.
 	- host : (string - optional) - (default: '127.0.0.1') - The host you want to connect with.
-	- port : (integer - optional) - (default: 9998) - Set the port on which perform the RPC command.
+	- port : (integer - optional) - (default: 51473) - Set the port on which perform the RPC command.
+
+Promise vs callback based
+
+  - `require('bitcoind-rpc-colx/promise')` to have promises returned
+  - `require('bitcoind-rpc-colx')` to have callback functions returned
 	
 ## Examples
 
+Config:
+```javascript
+var config = {
+    protocol: 'http',
+    user: 'colx',
+    pass: 'local321',
+    host: '127.0.0.1',
+    port: 51473
+};
+```
+
+Promise based:
+```javascript
+var RpcClient = require('bitcoind-rpc-colx/promise');
+var rpc = new RpcClient(config);
+
+rpc.getRawMemPool()
+    .then(ret => {
+        return Promise.all(ret.result.map(r => rpc.getRawTransaction(r)))
+    })
+    .then(rawTxs => {
+        rawTxs.forEach(rawTx => {
+            console.log(`RawTX: ${rawTx.result}`);
+        })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
+```
+
+Callback based (legacy):
 ```javascript
 var run = function() {
   var bitcore = require('bitcore');
-  var RpcClient = require('bitcoind-rpc-dash');
-
-  var config = {
-    protocol: 'http',
-    user: 'user',
-    pass: 'pass',
-    host: '127.0.0.1',
-    port: 19998
-  };
-
+  var RpcClient = require('bitcoind-rpc-colx');
   var rpc = new RpcClient(config);
 
   var txids = [];
@@ -84,10 +108,10 @@ var run = function() {
 
 You can dynamically access to the help of each method by doing
 ```
-const RpcClient = require('bitcoind-rpc-dash');
+const RpcClient = require('bitcoind-rpc-colx');
 var client = new RPCclient({
     protocol:'http',
-    user: 'dash',
+    user: 'colx',
     pass: 'local321', 
     host: '127.0.0.1', 
     port: 19998
